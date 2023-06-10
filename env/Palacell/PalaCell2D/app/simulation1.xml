@@ -1,0 +1,137 @@
+<?xml version="1.0" ?>
+<parameters>
+<geometry>
+    <!-- Name of VTK file to be read for initial conditions.
+         Leave empty if initial condition is not read from VTK file. -->
+    <initialVTK>  </initialVTK>
+    <initialWallVTK>  </initialWallVTK>
+    <!-- Name of the output VTK file -->
+    <finalVTK> chem_1- </finalVTK>
+</geometry>
+
+<simulation>
+    <!-- Default cells type.
+         With 0, all the cells are relaxing.
+         With 1, all the cells are growing.
+         With -1, the cells type depends of the signal diffusion -->
+    <type> 1 </type>
+    <!-- Steps where the VTK are written -->
+    <exportStep> 100 </exportStep>
+    <!-- Value of the first step -->
+    <initStep> 0 </initStep>
+    <!-- Level of verbosity (0 silent) -->
+    <verbose> 1 </verbose>
+    <!-- Export Cells -->
+    <exportCells> true </exportCells>
+    <!-- Export Force Links -->
+    <exportForces> true </exportForces>
+    <!-- Export Field -->
+    <exportField> false </exportField>
+    <!-- Export Species -->
+    <exportSpecies> true </exportSpecies>
+    <!-- Export PointsProperties (Debug) -->
+    <exportDBG> false </exportDBG>
+    <!-- Export cells data to csv-->
+    <exportCSV> false </exportCSV>
+    <!-- Seed:
+         if < 0 : random seed
+         if 0 : no noise on points
+         if > 0 : fix seed -->
+    <seed> 40 </seed>
+    <!-- Exit criteria:
+         cell - for a max number of cell,
+         time - for a maximal timer,
+         max number of iteration by default -->
+    <exit> cell </exit>
+    <!-- Number of iterations -->
+    <numIter> 10000 </numIter>
+    <!-- Total time -->
+    <numTime> 7200 </numTime>
+    <!-- Number of cells -->
+    <numCell> 300 </numCell>
+    <!-- Iteration to begin with -->
+    <startAt> 0 </startAt>
+    <!-- Iteration to stop at -->
+    <stopAt> 10000 </stopAt>
+</simulation>
+
+<physics>
+    <!-- Diffusivity of chemical species. Units: L^2/T (micrometer-square per second)-->
+    <diffusivity> 2.0 </diffusivity>
+    <!-- Cells are counted starting at zero. -->
+    <reactingCell> 0 </reactingCell>
+    <!-- Units: 1 / L^2 -->
+    <reactionRate> 0.001 </reactionRate>
+    <!-- Units: 1 / L^2 -->
+    <dissipationRate> 0.0001 </dissipationRate>
+    <!-- Units: 1 / L^2 -->
+    <growthThreshold> 0.025 </growthThreshold>
+    <!-- Units: 1 / T -->
+    <zeta> 0.7 </zeta>
+    <!-- TargetDensity of the cells. Units: 1/L^2 -->
+    <rho0> 1.05 </rho0>
+    <!-- Rest-length of the red links. Units: L -->
+    <d0> 0.5 </d0>
+    <!-- Maximal length of the red links. Units: L -->
+    <dmax> 1.0 </dmax>
+    <!-- Number of vertices for the default cell -->
+    <n0> 123 </n0>
+
+    <numCells> 1 </numCells>
+    <cell type="default">
+      <!-- Units: L^2 -->
+      <divisionThreshold> 380.0 </divisionThreshold>
+      <!-- Units: L^2 / (T^2) -->
+      <pressureSensitivity> 2.5 </pressureSensitivity>
+      <!-- Units: 1 / (T*L^2) -->
+      <nu> 0.0025 </nu>
+      <!-- Units: 1 / (T*L^2) -->
+      <nuRelax> 0.01 </nuRelax>
+      <!-- TargetArea of the cells. Units: L^2 -->
+      <A0> 300.0 </A0>
+      <!-- Spring force on cell membrane: 1/T^2 -->
+      <k4> 0.01 </k4>
+      <zetaCC> 0.4 </zetaCC>
+    </cell>
+
+    <numVertex> 3 </numVertex>
+    <edgeVertex> -1  </edgeVertex>
+    <vertex type="default">
+      <!-- Force of the red links. Units: 1/T^2 -->
+      <k1> 0.2 </k1>
+      <!-- Internal cell tensions. Units: 1/T^2 -->
+      <k3> 0.2 </k3>
+    </vertex>
+    <vertex type="1">
+      <k1> 0.001 </k1>
+    </vertex>
+    <vertex type="2">
+      <k1> 0.2 </k1>
+    </vertex>
+
+    <extern>
+      <!-- Compression -->
+        <!-- Axis for the compression (Y axis by default) -->
+        <compressionAxis> X </compressionAxis>
+        <!-- Compression force applied by a pseudowall -->
+        <comprForce> 0.001 </comprForce>
+      <!-- Spherical constraint -->
+        <!-- Constraint constant. Units: 1/T^2 -->
+        <kExtern> 0.01 </kExtern>
+        <!-- Constraint center -->
+        <center> 200 200 </center>
+        <!-- Minimal radius. Units: L -->
+        <rMin> 100 </rMin>
+   </extern>
+</physics>
+
+<numerics>
+    <!-- The discrete space interval (inverse of lattice resolution).
+         Units: micro-meters. -->
+    <dx> 1.0 </dx>
+    <!-- The discrete time step. Units: seconds -->
+    <dt> 1.0 </dt>
+    <!-- Domain size, in format x0, y0, x1, y1. Units: micro-meters. -->
+    <domain> 0 0 400. 400. </domain>
+</numerics>
+</parameters>

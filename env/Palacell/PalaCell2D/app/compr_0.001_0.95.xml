@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<parameters>
+   <geometry>
+      <initialVTK>output/chem_0.001_0.95-_final_cell.vtp</initialVTK>
+      <initialWallVTK> </initialWallVTK>
+      <finalVTK>chem_0.001_0.95-</finalVTK>
+   </geometry>
+   <simulation>
+      <type>1</type>
+      <exportStep>20</exportStep>
+      <initStep>0</initStep>
+      <verbose>0</verbose>
+      <exportCells>true</exportCells>
+      <exportForces>false</exportForces>
+      <exportField>false</exportField>
+      <exportSpecies>false</exportSpecies>
+      <exportDBG>false</exportDBG>
+      <exportCSV>false</exportCSV>
+      <seed>40</seed>
+      <exit>iter</exit>
+      <numIter>20</numIter>
+      <numTime>7200</numTime>
+      <numCell>300</numCell>
+      <startAt>0</startAt>
+      <stopAt>20</stopAt>
+      <initialPos>0 0</initialPos>
+   </simulation>
+   <physics>
+      <diffusivity>2.0</diffusivity>
+      <reactingCell>0</reactingCell>
+      <reactionRate>0.001</reactionRate>
+      <dissipationRate>0.0001</dissipationRate>
+      <growthThreshold>0.025</growthThreshold>
+      <zeta>0.7</zeta>
+      <rho0>1.05</rho0>
+      <d0>0.5</d0>
+      <dmax>1.0</dmax>
+      <n0>123</n0>
+      <numCells>1</numCells>
+      <cell type="default">
+         <divisionThreshold>300.0</divisionThreshold>
+         <pressureSensitivity>2.5</pressureSensitivity>
+         <nu>0.0025</nu>
+         <nuRelax>0.01</nuRelax>
+         <A0>300.0</A0>
+         <k4>0.01</k4>
+         <probToProlif>0.001</probToProlif>
+         <maxPressureLevel>0.05</maxPressureLevel>
+         <zetaCC>0.4</zetaCC>
+      </cell>
+      <numVertex>3</numVertex>
+      <edgeVertex>-1</edgeVertex>
+      <vertex type="default">
+         <k1>0.2</k1>
+         <k3>0.2</k3>
+      </vertex>
+      <vertex type="1">
+         <k1>0.001</k1>
+      </vertex>
+      <vertex type="2">
+         <k3>0.2</k3>
+      </vertex>
+      <extern>
+         <compressionAxis>X</compressionAxis>
+         <comprForce>0.0</comprForce>
+         <kExtern>0.01</kExtern>
+         <center>200 200</center>
+         <rMin>100</rMin>
+      </extern>
+   </physics>
+   <numerics>
+      <dx>1.0</dx>
+      <dt>1.0</dt>
+      <domain>0 0 400. 400.</domain>
+   </numerics>
+</parameters>
